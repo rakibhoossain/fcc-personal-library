@@ -1,0 +1,145 @@
+<html>
+  
+  <head>
+    <title>Personal Library for freeCodeCamp - by JulianNF</title>
+    <meta name="description" content="A project for freeCodeCamp's Information Security and Quality Assurance certification">
+    <link id="favicon" rel="icon" type="image/x-icon" href="https://cdn.glitch.com/ee746f01-44ea-4c99-963e-225ed64aefbb%2Ffavicon.jpg?1555319784363">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+    
+    <!-- We'll be needing jQuery to handle our form submissions and we'll also need our client-side JS: -->
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/public/client.js"></script>
+    
+  </head>
+  
+  
+  <body>
+    
+    <div class="container">
+    
+    <header>
+      <h1>Personal Library</h1>
+      <h2>(a project for freeCodeCamp's Information Security and Quality Assurance certification)</h2>
+    </header>
+      
+    
+    <div id="sampleui">
+      
+      <h3>Sample Front-End</h3>
+      <p>
+        Here you can play with adding new books, seeing existing comments for each book in the library, and adding new comments to existing books. You can also delete 
+        individual books as well as delete all the books in the library.
+      </p>
+      
+      <form id="newBookForm">
+        <label for="bookTitleToAdd">New book title</label>
+        <input type="text" id="bookTitleToAdd" name="title" required>
+        <input type="submit" value="Add Book" id="newBook">
+      </form>
+      
+      <div id="bookDetails">
+        <div id="bookList">
+          <h3>Books</h3>
+        </div>
+        
+        <div id="commentList">
+          <div id="commentListTitle">
+            <h3>&lt; Select a book to see its details</h3>
+          </div>
+          <div id="currentBookId"></div>
+          <div id="commentDetails"></div>
+        </div>      
+        
+      </div>
+      
+      
+      <form id="deleteAllBooksForm">
+        <label for="deleteAllBooks">Delete all the books in the library</label>
+        <input type="submit" id="deleteAllBooks" value="Delete all books...">
+      </form>
+      
+      
+    </div>
+      
+      
+      
+      <h3>
+          Sample POST Forms with JSON Result
+        </h3>
+        <p>
+          To get a better sense of what is going on behind the scenes, you can use the following two forms to submit new books and new book comments to 
+          the library, respectively. The API will respond to your POSTs with a JSON file.
+        </p>
+        <p>
+          Note that when a book is added to the library, the JSON response will include an "inDBbefore" property. Instead of adding a duplicate book to the library, anytime
+          a book is submitted to the library with a title that matches a book that is already in the library, the API will respond with the already existing book (and all
+          of its comments, if any) rather than add a duplicate book title.
+        </p>
+      
+      <div id="postForms">
+        
+        <form id="postNewBook" action="/api/books" method="post">
+          <h3>Add a Book to the Library</h3>
+          <label for="booktitle">Book title</label>
+          <input type="text" name="title" id="booktitle" required>
+          <input type="submit" value="Submit">
+          <code> POST /api/books/</code>
+        </form>
+
+        <form id="postNewComment" action="" method="post">
+          <h3>Comment on a Book in the Library</h3>
+          <label for="idinputtest">Book _id</label>
+          <input type="text" name="id" value="" id="idinputtest" required>
+          <label for="comment">Comment</label>
+          <input type="text" name="comment" id="comment" required>
+          <input type="submit" value="Submit">
+          <code> POST /api/books/{bookID}</code>
+        </form>
+        
+        <script>
+          // To submit our new comment POST, we need an action attribute for it, but we can't do that directly in the form because the action's target 
+          // will depend on the book's id since the POST target should be: /api/books/{bookID}. To address this, when the form is submitted, we'll dynamically
+          // "fill in" the action attribute:
+          $(function() {
+            
+           $("#postNewComment").submit(function() {
+             // We'll save the book id from the form's field...
+             let bookId = $("#idinputtest").val();
+             // ... and set the form's action attribute to the precise endpoint for our api route handlers to be able to retrieve the bookId:
+             $(this).attr("action", "/api/books/" + bookId);
+           });  // END of .submit() listener
+            
+          });  // END of function()
+       </script>
+      
+      </div>
+      
+      
+      
+      
+      <h3>User stories</h3>
+      <ol>
+        <li>Nothing from my website will be cached in my client as a security measure.</li>
+        <li>I will see that the site is powered by 'PHP 4.2.0' even though it isn't as a security measure.</li>
+        <li>I can <b>post</b> a <code>title</code> to /api/books to add a book and returned will be the object with the <code>title</code> and a unique <code>_id</code>.</li>
+        <li>I can <b>get</b> /api/books to retrieve an aray of all books containing <code>title</code>, <code>_id</code>, & <code>commentcount</code>.</li>
+        <li>I can <b>get</b> /api/books/{_id} to retrieve a single object of a book containing <code>title</code>, <code>_id</code>, & an array of <code>comments</code> (empty array if no comments present).</li>
+        <li>I can <b>post</b> a <code>comment</code> to /api/books/{_id} to add a comment to a book and returned will be the books object similar to <b>get</b> /api/books/{_id}.</li>
+        <li>I can <b>delete</b> /api/books/{_id} to delete a book from the collection. Returned will be 'delete successful' if successful.</li>
+        <li>If I try to request a book that doesn't exist I will get a 'no book exists' message.</li>
+        <li>I can send a <b>delete</b> request to /api/books to delete all books in the database. Returned will be 'complete delete successful' if successful.</li>
+        <li>All 6 functional tests required are complete and passing.</li>
+      </ol>
+      
+      <img src="https://cdn.gomix.com/d7932c52-287f-4dae-b175-631fef453000%2FScreen%20Shot%202016-12-16%20at%201.35.56%20AM.png" />
+    
+    </div>  <!-- END of container DIV. -->
+    
+    
+  </body>
+</html>

@@ -1,0 +1,241 @@
+/* Color palette: http://paletton.com/#uid=72P0u0kbSHy33Ye7lRigmwnkBrl */
+
+body {
+  background: linear-gradient(170deg, #FFCBA1 50%, #FFA1A1);
+  background-attachment: fixed;
+  margin: 0;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;          /* Combined with display=flex and footer's margin-top=auto in order to keep footer pinned to bottom of page at all times. */
+  
+  font-family: "Roboto", sans-serif;
+  line-height: 1.4em;
+}
+
+.container {
+  background: white;
+  max-width: 700px;
+  border-radius: 0.3em;
+  margin: 1em 0.5em 0.5em 0.5em;
+  padding: 2em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+
+
+/*
+Headers:
+*/
+h1 {
+  text-align: center;
+  font-size: 3em;
+  color: #DA4E4E;
+}
+
+h2 {
+  text-align: center;
+  font-size: 0.8em;
+  color: #888;
+  font-weight: lighter;
+  margin: -1.5em 0 0 0;
+}
+
+h3 {
+  color: #DA4E4E;
+  margin-top: 3em;
+}
+
+form h3 {
+  color: white;
+  margin-top: 0;
+}
+
+#commentList h3 {
+  margin-bottom: 0;
+}
+/*
+END OF: Headers
+*/
+
+
+
+
+
+#postForms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+#postNewBook,
+#postNewComment {
+  flex-basis: calc(50% - 2.5em);
+  
+  display: flex;
+  flex-direction: column;
+}
+
+
+form {
+  background: #79C1C1;
+  padding: 1em;
+  border-radius: 0.3em;
+  
+  display: flex;
+  flex-direction: column;
+    
+  color: white;
+}
+
+#newBookForm,
+#deleteAllBooksForm {
+  flex-direction: row;
+  align-items: center;
+}
+
+#deleteAllBooksForm {
+  justify-content: flex-end;
+}
+
+form code {
+  font-size: 0.8em;
+  align-self: flex-end;
+}
+
+
+
+/*
+All elements for the book list and their comments (except input fields and buttons/submits):
+*/
+#bookDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#bookList,
+#commentList {
+  flex-basis: calc(50% - 2.5em);
+  
+  border: 2px solid #79C1C1;
+  border-radius: 0.3em;
+  margin-bottom: 1em;
+  padding: 1em;
+}
+
+#commentDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+#bookList p {
+  margin: 0;
+}
+
+#bookList h3,
+#commentList h3,
+#bookList ol,
+#commentList ol {
+  margin-top: 0;
+}
+
+#bookId {
+  font-size: 0.8em;
+  color: #888;
+  margin-top: -0.25em;
+}
+/*
+END OF: All elements for the book list and their comments (except input fields and buttons/submits):
+*/
+
+
+
+
+
+/*
+Form fields:
+*/
+input[type=text] {
+  border: none;
+  padding: 0.3em;
+  margin: 0.5em 0 1em 0;
+  font-family: inherit;
+  font-size: 0.9em;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.3);
+  
+  flex-grow: 1;
+}
+
+#bookTitleToAdd {
+  margin: 0 0 0 1em;
+}
+/*
+END OF: Form fields:
+*/
+
+
+
+
+
+/*
+All the buttons and submits:
+*/
+input[type=submit],
+button {
+  border-radius: 0.3em;
+  padding: 0.3em 2em;
+  margin: 0 0 0 1em;
+  align-self: flex-end;
+  
+  font-weight: 900;
+  border: 2px solid #B9F0B9;
+  background: #79C1C1;
+  color: #B9F0B9
+}
+
+input[type=submit]:hover,
+button:hover {
+  background: #B9F0B9;
+  color: #79C1C1;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+input[type=submit]:active,
+button:active {
+  box-shadow: none;
+}
+
+.deleteBook,
+#deleteAllBooks {
+  border: 2px solid #FFC5C5;
+  background: white;
+  color: #FFC5C5;
+  margin: 0 1em 0 1em;
+  align-self: flex-end;
+}
+
+.deleteBook:hover,
+#deleteAllBooks:hover {
+  border-color: #FF7D7D;
+  background: #FF7D7D;
+  color: white;
+}
+/*
+END of: All the buttons and submits
+*/
+
+
+img {
+  align-self: center;
+  margin: 1em 0;
+}
